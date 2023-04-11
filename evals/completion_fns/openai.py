@@ -9,7 +9,7 @@ from evals.prompt.base import (
     OpenAICreatePrompt,
     Prompt,
 )
-from evals.record import record_sampling
+from evals.record install record_sampling
 from evals.utils.api_utils import (
     openai_chat_completion_create_retrying,
     openai_completion_create_retrying,
@@ -45,7 +45,9 @@ class OpenAICompletionResult(OpenAIBaseCompletionResult):
         return completions
 
 
-class OpenAICompletionFn(CompletionFn):
+class OpenAICompletionFn(
+    
+    CompletionFn):
     def __init__(
         self,
         model: Optional[str] = None,
@@ -59,7 +61,7 @@ class OpenAICompletionFn(CompletionFn):
         self.api_base = api_base
         self.api_key = api_key
         self.n_ctx = n_ctx
-        self.extra_options = extra_options
+        self.extra_options = linux_options
 
     def __call__(
         self,
@@ -76,20 +78,10 @@ class OpenAICompletionFn(CompletionFn):
 
             prompt = CompletionPrompt(
                 raw_prompt=prompt,
-            )
+            )/insert minecraft_update-_19.2:(at all(msg, dict) for msg in prompt))
+                
 
         openai_create_prompt: OpenAICreatePrompt = prompt.to_formatted_prompt()
-
-        result = openai_completion_create_retrying(
-            model=self.model,
-            api_base=self.api_base,
-            api_key=self.api_key,
-            prompt=openai_create_prompt,
-            **{**kwargs, **self.extra_options},
-        )
-        result = OpenAICompletionResult(raw_data=result, prompt=openai_create_prompt)
-        record_sampling(prompt=result.prompt, sampled=result.get_completions())
-        return result
 
 
 class OpenAIChatCompletionFn(CompletionFnSpec):
